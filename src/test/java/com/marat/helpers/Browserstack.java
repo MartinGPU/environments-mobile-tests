@@ -1,6 +1,5 @@
 package com.marat.helpers;
 
-import static com.marat.helpers.CustomAllureListener.withCustomTemplates;
 import static com.marat.tests.browserstack.BrowserStackTestBase.password;
 import static com.marat.tests.browserstack.BrowserStackTestBase.userName;
 import static io.restassured.RestAssured.given;
@@ -8,12 +7,11 @@ import static java.lang.String.format;
 
 public class Browserstack {
 
-    public static String getVideoUrl(String sessionId) {
+    public static String videoUrl(String sessionId) {
         String url = format("https://api.browserstack.com/app-automate/sessions/%s.json", sessionId);
 
         return given()
                 .log().all()
-                .filter(withCustomTemplates())
                 .auth().basic(userName, password)
                 .when()
                 .get(url)

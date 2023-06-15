@@ -7,6 +7,7 @@ import org.openqa.selenium.MutableCapabilities;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
+import javax.annotation.Nonnull;
 import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -24,22 +25,20 @@ public class LocalMobileDriver implements WebDriverProvider {
         }
     }
 
+    @Nonnull
     @Override
-    public WebDriver createDriver(Capabilities capabilities) {
+    public WebDriver createDriver(DesiredCapabilities desiredCapabilities) {
 
-        MutableCapabilities mutableCapabilities = new MutableCapabilities();
-        mutableCapabilities.merge(capabilities);
+        desiredCapabilities.setCapability("platformName", "android");
+        desiredCapabilities.setCapability("deviceName", "Pixel_4_API_30");
+        desiredCapabilities.setCapability("version", "11.0");
+        desiredCapabilities.setCapability("locale", "en");
+        desiredCapabilities.setCapability("language", "en");
+        desiredCapabilities.setCapability("appPackage", "org.wikipedia.alpha");
+        desiredCapabilities.setCapability("appActivity", "org.wikipedia.main.MainActivity");
+        desiredCapabilities.setCapability("app", getAbsolutePath("src/test/resources/app-alpha-universal-release.apk"));
 
-        mutableCapabilities.setCapability("platformName", "android");
-        mutableCapabilities.setCapability("deviceName", "Pixel_4_API_30");
-        mutableCapabilities.setCapability("version", "11.0");
-        mutableCapabilities.setCapability("locale", "en");
-        mutableCapabilities.setCapability("language", "en");
-        mutableCapabilities.setCapability("appPackage", "org.wikipedia.alpha");
-        mutableCapabilities.setCapability("appActivity", "org.wikipedia.main.MainActivity");
-        mutableCapabilities.setCapability("app", getAbsolutePath("src/test/resources/app-alpha-universal-release.apk"));
-
-        return new AndroidDriver(getAppiumServerUrl(), capabilities);
+        return new AndroidDriver(getAppiumServerUrl(), desiredCapabilities);
     }
 
     private String getAbsolutePath(String filePath) {

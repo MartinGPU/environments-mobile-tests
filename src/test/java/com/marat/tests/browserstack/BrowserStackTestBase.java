@@ -13,6 +13,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 
 import static com.codeborne.selenide.Selenide.*;
+import static com.marat.helpers.Attach.getSessionId;
 
 public class BrowserStackTestBase {
 
@@ -39,10 +40,13 @@ public class BrowserStackTestBase {
 
     @AfterEach
     void afterEach() {
-        String sessionId = Selenide.sessionId().toString();
-//        Attach.screenshotAs("Last screenshot");
+        String sessionId = getSessionId();
+
+        Attach.screenshotAs("Last screenshot");
         Attach.pageSource();
+
         closeWebDriver();
-        Attach.addVideo(sessionId);
+
+        Attach.attachVideo(sessionId);
     }
 }
