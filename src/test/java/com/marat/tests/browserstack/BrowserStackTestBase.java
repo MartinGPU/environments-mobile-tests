@@ -1,7 +1,6 @@
 package com.marat.tests.browserstack;
 
 import com.codeborne.selenide.Configuration;
-import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.logevents.SelenideLogger;
 import com.marat.config.CredentialsConfig;
 import com.marat.drivers.BrowserstackMobileDriver;
@@ -12,7 +11,8 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 
-import static com.codeborne.selenide.Selenide.*;
+import static com.codeborne.selenide.Selenide.closeWebDriver;
+import static com.codeborne.selenide.Selenide.open;
 import static com.marat.helpers.Attach.getSessionId;
 
 public class BrowserStackTestBase {

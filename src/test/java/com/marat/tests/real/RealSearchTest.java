@@ -1,4 +1,4 @@
-package com.marat.tests.local;
+package com.marat.tests.real;
 
 import io.appium.java_client.MobileBy;
 import io.qameta.allure.AllureId;
@@ -13,8 +13,8 @@ import static com.codeborne.selenide.Selenide.*;
 import static io.qameta.allure.Allure.step;
 
 @Feature("Search text")
-@Tag("selenide_android_local")
-public class LocalSearchTest extends LocalTestBase{
+@Tag("real_android")
+public class RealSearchTest extends RealTestBase {
 
     @DisplayName("Searching test")
     @AllureId("22983")

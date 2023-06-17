@@ -1,4 +1,4 @@
-package com.marat.tests.local;
+package com.marat.tests.real;
 
 import com.codeborne.selenide.Condition;
 import io.appium.java_client.MobileBy;
@@ -9,12 +9,13 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
-import static com.codeborne.selenide.Selenide.*;
+import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.back;
 import static io.qameta.allure.Allure.step;
 
 @Feature("Settings")
-@Tag("selenide_android_local")
-public class LocalExistingSettingsButtonTest extends LocalTestBase {
+@Tag("real_android")
+public class RealExistingSettingsButtonTest extends RealTestBase {
 
     @DisplayName("Settings button")
     @AllureId("22994")
