@@ -13,6 +13,7 @@ import static com.marat.tests.browserstack.BrowserStackTestBase.*;
 
 public class BrowserstackMobileDriver implements WebDriverProvider {
 
+
     @Nonnull
     @Override
     public WebDriver createDriver(DesiredCapabilities desiredCapabilities) {
@@ -22,16 +23,16 @@ public class BrowserstackMobileDriver implements WebDriverProvider {
         desiredCapabilities.setCapability("browserstack.key", password);
 
         // Set URL of the application under test
-        desiredCapabilities.setCapability("app", "bs://c700ce60cf13ae8ed97705a55b8e022f13c5827c");
+        desiredCapabilities.setCapability("appLocation", getAppLocation);
 
         // Specify device and os_version for testing
-        desiredCapabilities.setCapability("device", "Google Pixel 3");
-        desiredCapabilities.setCapability("os_version", "9.0");
+        desiredCapabilities.setCapability("deviceName", getDeviceName);
+        desiredCapabilities.setCapability("deviceVersion", getDeviceVersion);
 
         // Set other BrowserStack mutableCapabilities
-        desiredCapabilities.setCapability("project", "First Java Project");
-        desiredCapabilities.setCapability("build", "browserstack-build-1");
-        desiredCapabilities.setCapability("name", "first_test");
+        desiredCapabilities.setCapability("projectName", getProjectName);
+        desiredCapabilities.setCapability("buildName", getBuildName);
+        desiredCapabilities.setCapability("testName", getTestName);
 
 
         // Initialise the remote Webdriver using BrowserStack remote URL

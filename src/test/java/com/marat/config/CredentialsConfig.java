@@ -11,4 +11,6 @@ public interface CredentialsConfig extends Config {
 
     String remoteUrl();
 
+    String remoteUri();
+
 }

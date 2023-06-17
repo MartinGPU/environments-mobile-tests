@@ -2,8 +2,6 @@ package com.marat.drivers;
 
 import com.codeborne.selenide.WebDriverProvider;
 import io.appium.java_client.android.AndroidDriver;
-import org.openqa.selenium.Capabilities;
-import org.openqa.selenium.MutableCapabilities;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
@@ -12,6 +10,7 @@ import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+import static com.marat.tests.local.LocalTestBase.*;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class LocalMobileDriver implements WebDriverProvider {
@@ -29,13 +28,13 @@ public class LocalMobileDriver implements WebDriverProvider {
     @Override
     public WebDriver createDriver(DesiredCapabilities desiredCapabilities) {
 
-        desiredCapabilities.setCapability("platformName", "android");
-        desiredCapabilities.setCapability("deviceName", "Pixel_4_API_30");
-        desiredCapabilities.setCapability("version", "11.0");
-        desiredCapabilities.setCapability("locale", "en");
-        desiredCapabilities.setCapability("language", "en");
-        desiredCapabilities.setCapability("appPackage", "org.wikipedia.alpha");
-        desiredCapabilities.setCapability("appActivity", "org.wikipedia.main.MainActivity");
+        desiredCapabilities.setCapability("localPlatformName", getLocalPlatformName);
+        desiredCapabilities.setCapability("localDeviceName", getLocalDeviceName);
+        desiredCapabilities.setCapability("localVersionName", getLocalVersionName);
+        desiredCapabilities.setCapability("locale", getLocale);
+        desiredCapabilities.setCapability("language", getLanguage);
+        desiredCapabilities.setCapability("appPackage", getAppPackage);
+        desiredCapabilities.setCapability("appActivity", getAppActivity);
         desiredCapabilities.setCapability("app", getAbsolutePath("src/test/resources/app-alpha-universal-release.apk"));
 
         return new AndroidDriver(getAppiumServerUrl(), desiredCapabilities);

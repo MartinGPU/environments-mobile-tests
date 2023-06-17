@@ -1,4 +1,4 @@
-package com.marat.tests.real;
+package com.marat.tests.selenoid;
 
 import com.codeborne.selenide.Configuration;
 import com.marat.config.RealConfig;
@@ -14,7 +14,7 @@ import static com.codeborne.selenide.Selenide.closeWebDriver;
 import static com.codeborne.selenide.Selenide.open;
 import static com.codeborne.selenide.logevents.SelenideLogger.addListener;
 
-public class RealTestBase {
+public class SelenoidTestBase {
 
     public static RealConfig real = ConfigFactory.create(RealConfig.class, System.getProperties());
 

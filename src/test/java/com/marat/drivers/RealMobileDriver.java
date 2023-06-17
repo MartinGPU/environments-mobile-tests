@@ -10,6 +10,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static com.marat.tests.real.RealTestBase.*;
 
 public class RealMobileDriver implements WebDriverProvider {
 
@@ -25,14 +26,14 @@ public class RealMobileDriver implements WebDriverProvider {
     @Override
     public WebDriver createDriver(DesiredCapabilities desiredCapabilities) {
 
-        desiredCapabilities.setCapability("platformName", "Android");
-        desiredCapabilities.setCapability("deviceName", "R58R24AQGKJ");
-        desiredCapabilities.setCapability("version", "10.0");
-        desiredCapabilities.setCapability("locale", "en");
-        desiredCapabilities.setCapability("language", "en");
-        desiredCapabilities.setCapability("appPackage", "org.wikipedia.alpha");
-        desiredCapabilities.setCapability("appActivity", "org.wikipedia.main.MainActivity");
-        desiredCapabilities.setCapability("app", getAbsolutePath("src/test/resources/app-alpha-universal-release.apk"));
+        desiredCapabilities.setCapability("realPlatformName", getRealPlatformName);
+        desiredCapabilities.setCapability("realDeviceName", getRealDeviceName);
+        desiredCapabilities.setCapability("realVersionName", getRealVersionName);
+        desiredCapabilities.setCapability("realLocale", getRealLocale);
+        desiredCapabilities.setCapability("realLanguage", getRealLanguage);
+        desiredCapabilities.setCapability("realAppPackage", getRealAppPackage);
+        desiredCapabilities.setCapability("realAppActivity", getRealAppActivity);
+        desiredCapabilities.setCapability("realAppPath", getAbsolutePath("src/test/resources/app-alpha-universal-release.apk"));
 
 
         return new AndroidDriver(getAppiumServerUrl(), desiredCapabilities);
