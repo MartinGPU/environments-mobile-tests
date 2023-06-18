@@ -1,18 +1,21 @@
 package com.marat.helpers;
 
-import static com.marat.tests.browserstack.BrowserStackTestBase.password;
-import static com.marat.tests.browserstack.BrowserStackTestBase.userName;
+import com.marat.config.CredentialsConfig;
+import org.aeonbits.owner.ConfigFactory;
+
 import static io.restassured.RestAssured.given;
 import static java.lang.String.format;
 
 public class Browserstack {
+
+    public static CredentialsConfig credentials = ConfigFactory.create(CredentialsConfig.class, System.getProperties());
 
     public static String videoUrl(String sessionId) {
         String url = format("https://api.browserstack.com/app-automate/sessions/%s.json", sessionId);
 
         return given()
                 .log().all()
-                .auth().basic(userName, password)
+                .auth().basic(credentials.userName(), credentials.password())
                 .when()
                 .get(url)
                 .then()

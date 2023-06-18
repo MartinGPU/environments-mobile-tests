@@ -2,7 +2,7 @@ package com.marat.config;
 
 import org.aeonbits.owner.Config;
 
-@Config.Sources({"classpath:local.properties"})
+@Config.Sources({"classpath:${deviceHost}.properties"})
 public interface LocalConfig extends Config {
 
     @Key("localPlatformName")
@@ -28,4 +28,7 @@ public interface LocalConfig extends Config {
 
     @Key("appPath")
     String getAppPath();
+
+    @Key("appiumUrl")
+    String getAppiumUrl();
 }

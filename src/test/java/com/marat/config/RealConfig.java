@@ -2,7 +2,7 @@ package com.marat.config;
 
 import org.aeonbits.owner.Config;
 
-@Config.Sources({"classpath:real.properties"})
+@Config.Sources({"classpath:${deviceHost}.properties"})
 public interface RealConfig extends Config {
 
     @Key("realPlatformName")
@@ -26,6 +26,6 @@ public interface RealConfig extends Config {
     @Key("realAppActivity")
     String getRealAppActivity();
 
-    @Key("realAppPath")
-    String getRealAppPath();
+    @Key("realAppiumUrl")
+    String getRealAppiumUrl();
 }

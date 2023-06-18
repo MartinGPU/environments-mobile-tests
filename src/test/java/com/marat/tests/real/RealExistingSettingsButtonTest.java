@@ -1,6 +1,7 @@
 package com.marat.tests.real;
 
 import com.codeborne.selenide.Condition;
+import com.marat.tests.GenTestBase;
 import io.appium.java_client.MobileBy;
 import io.qameta.allure.AllureId;
 import io.qameta.allure.Feature;
@@ -15,7 +16,7 @@ import static io.qameta.allure.Allure.step;
 
 @Feature("Settings")
 @Tag("real_android")
-public class RealExistingSettingsButtonTest extends RealTestBase {
+public class RealExistingSettingsButtonTest extends GenTestBase {
 
     @DisplayName("Settings button")
     @AllureId("22994")

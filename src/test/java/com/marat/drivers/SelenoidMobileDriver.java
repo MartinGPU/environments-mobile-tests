@@ -1,7 +1,9 @@
 package com.marat.drivers;
 
 import com.codeborne.selenide.WebDriverProvider;
+import com.marat.config.SelenoidConfig;
 import io.appium.java_client.android.AndroidDriver;
+import org.aeonbits.owner.ConfigFactory;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
@@ -10,9 +12,11 @@ import java.net.URL;
 
 public class SelenoidMobileDriver implements WebDriverProvider {
 
+    public static SelenoidConfig selenoid = ConfigFactory.create(SelenoidConfig.class, System.getProperties());
+
     public static URL getAppiumServerUrl() {
         try {
-            return new URL("https://user1:1234@selenoid.autotests.cloud:4444/wd/hub");
+            return new URL(selenoid.getSelenoidAppiumUrl());
         } catch (MalformedURLException e) {
             throw new RuntimeException(e);
         }
@@ -21,15 +25,15 @@ public class SelenoidMobileDriver implements WebDriverProvider {
     @Override
     public WebDriver createDriver(DesiredCapabilities desiredCapabilities) {
 
-        desiredCapabilities.setCapability("platformName", "Android");
-        desiredCapabilities.setCapability("deviceName", "android");
-        desiredCapabilities.setCapability("version", "10.0");
-        desiredCapabilities.setCapability("locale", "en");
-        desiredCapabilities.setCapability("language", "en");
+        desiredCapabilities.setCapability("platformName", selenoid.getSelenoidPlatformName());
+        desiredCapabilities.setCapability("deviceName", selenoid.getSelenoidDeviceName());
+        desiredCapabilities.setCapability("version", selenoid.getSelenoidVersionName());
+        desiredCapabilities.setCapability("locale", selenoid.getSelenoidLocale());
+        desiredCapabilities.setCapability("language", selenoid.getSelenoidLanguage());
         desiredCapabilities.setCapability("enableVNC", true);
         desiredCapabilities.setCapability("enableVideo", true);
-        desiredCapabilities.setCapability("appPackage", "org.wikipedia.alpha");
-        desiredCapabilities.setCapability("appActivity", "org.wikipedia.main.MainActivity");
+        desiredCapabilities.setCapability("appPackage", selenoid.getSelenoidAppPackage());
+        desiredCapabilities.setCapability("appActivity", selenoid.getSelenoidAppActivity());
         desiredCapabilities.setCapability("app", apkUrl());
 
         return new AndroidDriver(getAppiumServerUrl(), desiredCapabilities);

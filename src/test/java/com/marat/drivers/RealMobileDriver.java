@@ -1,7 +1,9 @@
 package com.marat.drivers;
 
 import com.codeborne.selenide.WebDriverProvider;
+import com.marat.config.RealConfig;
 import io.appium.java_client.android.AndroidDriver;
+import org.aeonbits.owner.ConfigFactory;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
@@ -10,14 +12,14 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static com.marat.tests.real.RealTestBase.*;
 
 public class RealMobileDriver implements WebDriverProvider {
 
+    public static RealConfig real = ConfigFactory.create(RealConfig.class, System.getProperties());
 
     public static URL getAppiumServerUrl() {
         try {
-            return new URL("http://127.0.0.1:4723/wd/hub");
+            return new URL(real.getRealAppiumUrl());
         } catch (MalformedURLException e) {
             throw new RuntimeException(e);
         }
@@ -26,13 +28,13 @@ public class RealMobileDriver implements WebDriverProvider {
     @Override
     public WebDriver createDriver(DesiredCapabilities desiredCapabilities) {
 
-        desiredCapabilities.setCapability("realPlatformName", getRealPlatformName);
-        desiredCapabilities.setCapability("realDeviceName", getRealDeviceName);
-        desiredCapabilities.setCapability("realVersionName", getRealVersionName);
-        desiredCapabilities.setCapability("realLocale", getRealLocale);
-        desiredCapabilities.setCapability("realLanguage", getRealLanguage);
-        desiredCapabilities.setCapability("realAppPackage", getRealAppPackage);
-        desiredCapabilities.setCapability("realAppActivity", getRealAppActivity);
+        desiredCapabilities.setCapability("realPlatformName", real.getRealPlatformName());
+        desiredCapabilities.setCapability("realDeviceName", real.getRealDeviceName());
+        desiredCapabilities.setCapability("realVersionName", real.getRealVersionName());
+        desiredCapabilities.setCapability("realLocale", real.getRealLocale());
+        desiredCapabilities.setCapability("realLanguage", real.getRealLanguage());
+        desiredCapabilities.setCapability("realAppPackage", real.getRealAppPackage());
+        desiredCapabilities.setCapability("realAppActivity", real.getRealAppActivity());
         desiredCapabilities.setCapability("realAppPath", getAbsolutePath("src/test/resources/app-alpha-universal-release.apk"));
 
 

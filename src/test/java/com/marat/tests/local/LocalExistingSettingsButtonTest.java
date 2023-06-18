@@ -1,6 +1,7 @@
 package com.marat.tests.local;
 
 import com.codeborne.selenide.Condition;
+import com.marat.tests.GenTestBase;
 import io.appium.java_client.MobileBy;
 import io.qameta.allure.AllureId;
 import io.qameta.allure.Feature;
@@ -13,8 +14,8 @@ import static com.codeborne.selenide.Selenide.*;
 import static io.qameta.allure.Allure.step;
 
 @Feature("Settings")
-@Tag("selenide_android_local")
-public class LocalExistingSettingsButtonTest extends LocalTestBase {
+@Tag("selenide_local")
+public class LocalExistingSettingsButtonTest extends GenTestBase {
 
     @DisplayName("Settings button")
     @AllureId("22994")
