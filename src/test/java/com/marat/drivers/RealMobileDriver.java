@@ -27,7 +27,6 @@ public class RealMobileDriver implements WebDriverProvider {
 
     @Override
     public WebDriver createDriver(DesiredCapabilities desiredCapabilities) {
-
         desiredCapabilities.setCapability("realPlatformName", real.getRealPlatformName());
         desiredCapabilities.setCapability("realDeviceName", real.getRealDeviceName());
         desiredCapabilities.setCapability("realVersionName", real.getRealVersionName());
@@ -36,16 +35,12 @@ public class RealMobileDriver implements WebDriverProvider {
         desiredCapabilities.setCapability("realAppPackage", real.getRealAppPackage());
         desiredCapabilities.setCapability("realAppActivity", real.getRealAppActivity());
         desiredCapabilities.setCapability("realAppPath", getAbsolutePath("src/test/resources/app-alpha-universal-release.apk"));
-
-
         return new AndroidDriver(getAppiumServerUrl(), desiredCapabilities);
     }
-
 
     private String getAbsolutePath(String filePath) {
         File file = new File(filePath);
         assertTrue(file.exists(), filePath + " not found");
-
         return file.getAbsolutePath();
     }
 }

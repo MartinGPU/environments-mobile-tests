@@ -1,7 +1,6 @@
 package com.marat.tests;
 
 import com.codeborne.selenide.Configuration;
-import com.codeborne.selenide.logevents.SelenideLogger;
 import com.marat.drivers.BrowserstackMobileDriver;
 import com.marat.drivers.LocalMobileDriver;
 import com.marat.drivers.RealMobileDriver;

@@ -24,7 +24,6 @@ public class SelenoidMobileDriver implements WebDriverProvider {
 
     @Override
     public WebDriver createDriver(DesiredCapabilities desiredCapabilities) {
-
         desiredCapabilities.setCapability("platformName", selenoid.getSelenoidPlatformName());
         desiredCapabilities.setCapability("deviceName", selenoid.getSelenoidDeviceName());
         desiredCapabilities.setCapability("version", selenoid.getSelenoidVersionName());
@@ -35,10 +34,8 @@ public class SelenoidMobileDriver implements WebDriverProvider {
         desiredCapabilities.setCapability("appPackage", selenoid.getSelenoidAppPackage());
         desiredCapabilities.setCapability("appActivity", selenoid.getSelenoidAppActivity());
         desiredCapabilities.setCapability("app", apkUrl());
-
         return new AndroidDriver(getAppiumServerUrl(), desiredCapabilities);
     }
-
 
     private URL apkUrl() {
         try {
